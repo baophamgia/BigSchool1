@@ -23,15 +23,17 @@
                 <div class="details">
                     <span class="lecturer">
                         @course.Lecturer.Name
+                        <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerID">Follow</button>
                     </span>
                     <span class="category">
                         @course.Category.Name
                     </span>
-                    <button data-course-id="@course.Id" class="btn btn-default btn-group-sm js-toggle-attendance">Going?</button>
+                    <button data-course-id="@course.ID" class="btn btn-default btn-group-sm js-toggle-attendance">Going?</button>
                 </div>
             </li>
         }
     </ul>
+</ul>
     @section scripts
     {
         <script>
@@ -50,8 +52,16 @@
                         });
                 });
 
+                $(".js-toggle-follow").click(function (e) {
+                    var button = $(e.target);
+                    $.post("/api/followings", { coursId: button.attr("data-course-id") })
+                        .done(function () {
+                            button.text("Following");
+                        })
+                        .fail(function () {
+                            alert("Something failed!");
+                        });
+                });
             });
         </script>
         }
-</ul>
-
