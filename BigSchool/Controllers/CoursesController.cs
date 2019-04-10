@@ -25,7 +25,8 @@ namespace BigSchool.Controllers
         {
             var viewModel = new CourseViewModel
             {
-                Categories = _dbContext.Categories.ToList()
+                Categories = _dbContext.Categories.ToList(),
+                Heading = "Add Course"
             };
             return View(viewModel);
         }
@@ -79,6 +80,21 @@ namespace BigSchool.Controllers
                 .Include(l => l.Category)
                 .ToList();
             return View(courses);
+        }
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.ID == id && c.LecturerID == userId);
+            var viewModel = new CourseViewModel
+            {
+                Categories = _dbContext.Categories.ToList(),
+                Date = course.DateTime.ToString("dd/M/yyyy"),
+                Time = course.DateTime.ToString("HH:mm"),
+                Category = course.CategoryID,
+                Place = course.Place
+            };
+            return View("Create", viewModel);
         }
 
     }

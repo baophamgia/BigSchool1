@@ -8,7 +8,7 @@
 
 
 <ul class="course">
-    <ul>
+    
         @foreach (var course in Model.UpcommingCourses)
         {
             <li>
@@ -39,14 +39,14 @@
             </li>
         }
     </ul>
-</ul>
+
     @section scripts
     {
         <script>
             $(document).ready(function () {
                 $(".js-toggle-attendance").click(function (e) {
                     var button = $(e.target);
-                    $.post("/api/attendances", { coursId: button.attr("data-course-id") })
+                    $.post("/api/attendances", { courseId: button.attr("data-course-id") })
                         .done(function () {
                             button
                                 .removeClass("btn-default")
@@ -60,7 +60,7 @@
 
                 $(".js-toggle-follow").click(function (e) {
                     var button = $(e.target);
-                    $.post("/api/followings", { coursId: button.attr("data-user-id") })
+                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
                         .done(function () {
                             button.text("Following");
                         })

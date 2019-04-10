@@ -11,6 +11,7 @@ namespace BigSchool.ViewModels
     {
         internal bool ShowAction;
 
+        public int Id { get; set; }
         [Required]
         public string Place { get; set; }
 
@@ -25,6 +26,11 @@ namespace BigSchool.ViewModels
         [Required]
         public byte Category { get; set; }
         public IEnumerable<Category> Categories { get; set; }
+        public string Heading { get; set; }
+        public string Action
+        {
+            get { return (Id != 0) ? "Update" : "Create"; }
+        }
         public IQueryable<Course> UpcommingCourses { get;  set; }
 
         public DateTime GetDateTime()

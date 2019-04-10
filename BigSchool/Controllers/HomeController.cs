@@ -28,7 +28,7 @@ namespace BigSchool.Controllers
                 ShowAction = User.Identity.IsAuthenticated
             };
             return View(viewModel);
-    }
+        }
 
         public ActionResult About()
         {
