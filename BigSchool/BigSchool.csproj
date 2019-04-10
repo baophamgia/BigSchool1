@@ -184,6 +184,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
@@ -218,6 +219,10 @@
     <Compile Include="Migrations\201904030914551_AddFollowingsTable.Designer.cs">
       <DependentUpon>201904030914551_AddFollowingsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904100308179_AddIsCanceledColumnToCourse.cs" />
+    <Compile Include="Migrations\201904100308179_AddIsCanceledColumnToCourse.Designer.cs">
+      <DependentUpon>201904100308179_AddIsCanceledColumnToCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -243,6 +248,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.all.min.js" />
+    <Content Include="Scripts\bootbox.locales.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -330,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904030914551_AddFollowingsTable.resx">
       <DependentUpon>201904030914551_AddFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904100308179_AddIsCanceledColumnToCourse.resx">
+      <DependentUpon>201904100308179_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

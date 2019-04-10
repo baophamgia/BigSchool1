@@ -92,9 +92,30 @@ namespace BigSchool.Controllers
                 Date = course.DateTime.ToString("dd/M/yyyy"),
                 Time = course.DateTime.ToString("HH:mm"),
                 Category = course.CategoryID,
-                Place = course.Place
+                Place = course.Place,
+                Heading = "Edit Course",
+                Id = course.ID
             };
             return View("Create", viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(CourseViewModel viewModel)
+        {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Categories = _dbContext.Categories.ToList();
+                return View("Create", viewModel);
+            }
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.ID == viewModel.Id && c.LecturerID == userId);
+            course.Place = viewModel.Place;
+            course.DateTime = viewModel.GetDateTime();
+            course.CategoryID = viewModel.Category;
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
     }
